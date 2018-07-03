@@ -27,10 +27,22 @@
   </body>
 
   <script>
+    var markers = [
+        { coordinates: [59.33419, 18.067], title: "Head Quarters\niZettle" },
+        { coordinates: [59.333, 18.07], title: "Nordea" }
+    ]
+    
     var map = L.map('wheremap').setView([59.325, 18.08], 13);
     L.tileLayer( 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         subdomains: ['a','b','c']
     }).addTo( map );
+
+    for( var m of markers ) {
+        var markerOptions = {
+            title: m['title']
+        };
+        L.marker(m.coordinates, markerOptions).addTo( map );
+    }
   </script>
 </html>
