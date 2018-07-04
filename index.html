@@ -27,9 +27,30 @@
   </body>
 
   <script>
+    var redPin = L.icon({
+        iconUrl: 'http://maps.google.com/mapfiles/ms/micons/red-dot.png'
+    });
+        
+    var yellowPin = L.icon({
+        iconUrl: 'http://maps.google.com/mapfiles/ms/micons/yellow-dot.png'
+    });
+
     var markers = [
-        { coordinates: [59.33419, 18.067], title: "Head Quarters\niZettle" },
-        { coordinates: [59.333, 18.07], title: "Nordea" }
+        {
+            coordinates: [59.33419, 18.067],
+            title: "Head Quarters\niZettle",
+            icon: redPin
+        },
+        {
+            coordinates: [59.3335, 18.071],
+            title: "Nordea",
+            icon: yellowPin
+        },
+        {
+            coordinates: [59.333, 18.067],
+            title: "Spotify",
+            icon: yellowPin
+        }
     ]
     
     var map = L.map('wheremap').setView([59.325, 18.08], 13);
@@ -40,7 +61,8 @@
 
     for( var m of markers ) {
         var markerOptions = {
-            title: m['title']
+            title: m.title,
+            icon: m.icon
         };
         L.marker(m.coordinates, markerOptions).addTo( map );
     }
